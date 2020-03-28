@@ -1,1 +1,6 @@
 .venv/*
+.vscode/*
+*.csv
+*.xlsx
+*.xls
+*.pyc
