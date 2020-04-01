@@ -1,0 +1,40 @@
+{
+    "id": "xxxxxxxxx",
+    "post": {
+        "user_id": "xxxxxx",
+        "title": "title",
+        "slug": "slug",
+        "text": "text",
+        "created_date": "xxxxx"
+    },
+    "post_statistics": {
+        "comments_count": "xx",
+        "tags_count": "xx"
+    },
+    "comments": [
+        {
+            "id": "xxx",
+            "user_id": "xxxxxx",
+            "title": "title",
+            "slug": "slug",
+            "text": "text",
+            "created_date": "xxxxx"
+        },
+        {
+            "id": "xxx",
+            "user_id": "xxxxxx",
+            "title": "title",
+            "slug": "slug",
+            "text": "text",
+            "created_date": "xxxxx"
+        }
+    ],
+    "tags": [
+        {
+            "text": "text"
+        },
+        {
+            "text": "text"
+        }
+    ]
+}
