@@ -4,5 +4,30 @@
 {% block footer %}{% include "footer.html" %}{% endblock %}
 
 {% block content %}
-<h1>Привет!</h1>
+
+
+<div class="container mt-3">
+
+    <div class="row">
+        {% for post in data.posts %}
+        <div class="col-sm-6">
+            <div class="card">
+
+                <div class="card-header">
+                    {{post.title}} (тегов = {{ post.statistics.tags }}, комментариев = {{ post.statistics.comments }})
+                </div>
+                <div class="card-body">
+                    <!-- <h5 class="card-title">{{post.title}}</h5> -->
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                    <p class="card-text">{{post.short_text}}.</p>
+                    <a href="/posts/{{post._id}}/" class="card-link">Подробнее</a>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
 {% endblock %}

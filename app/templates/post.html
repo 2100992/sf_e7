@@ -4,5 +4,31 @@
 {% block footer %}{% include "footer.html" %}{% endblock %}
 
 {% block content %}
-<h1>Привет!</h1>
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-header">
+            {{data.post.title}}
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{data.post.text}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <div class="row">
+        {% for comment in data.comments %}
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ comment.title }}</h5>
+                    <p class="card-text">{{ comment.text }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
 {% endblock %}
