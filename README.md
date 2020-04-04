@@ -25,8 +25,8 @@
 JSON со списком всех объявлений со статистикой и тегами: `/api/posts/`
 
         Можно сделать некоторую фильтрацию по объявлениям. Например:
-        - `/posts/?slug=car_sale`
-        - `/api/posts/?slug=car_sale`
+        - /posts/?slug=car_sale
+        - /api/posts/?slug=car_sale
 
 
 2.
