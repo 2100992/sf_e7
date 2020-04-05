@@ -31,6 +31,19 @@
                 <div class="col-sm-6  text-right">
                     <p>Создано {{ data.post.created_date|strftime }}</p>
                 </div>
+                <div class="col-sm-1">
+                    <form action="/post-delete/{{data.post._id }}/" method="Delete">
+                        <div>
+
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                X
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -43,7 +56,9 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ comment.title }}</h5>
-                    <p><pre class="card-text">{{ comment.text }}</pre></p>
+                    <p>
+                        <pre class="card-text">{{ comment.text }}</pre>
+                    </p>
                     <div class="row">
                         <div class="col-sm-4">
                             {{ comment.created_date|strftime }}
@@ -52,7 +67,7 @@
                             {{ comment.user_id }}
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

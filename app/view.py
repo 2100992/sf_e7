@@ -6,7 +6,7 @@ from flask import request, render_template, redirect
 
 from app.extra import *
 
-
+from app.config import cache
 
 @app.route('/')
 def index():
@@ -24,7 +24,6 @@ def posts():
 
         print(data)
 
-
         return render_template('posts.html', data=data)
 
     elif request.method == 'POST':
@@ -37,23 +36,12 @@ def posts():
         return render_template('posts.html', data=data)
 
 
-# @app.route('/echo', methods=['POST'])
-# def echo():
-#     # print(request.is_json)
-#     if request.is_json:
-#         content = request.get_json(force=True)
-#     elif request.form:
-#         content = request.form
-#     else:
-#         content = None
-
-#     print(content)
-#     return jsonify(content)
-
-
-@app.route('/posts/<_id>/', methods=['GET', 'POST', 'DELETE'])
+@app.route('/posts/<_id>/', methods=['GET', 'POST'])
 # @cache.cached()
 def post(_id):
+
+    print(f'request.method = {request.method}')
+
     if request.method == 'GET':
 
         data = get_post(_id)
@@ -77,7 +65,10 @@ def post(_id):
         # return render_template('post.html', data=data)
         return redirect(f'/posts/{_id}/')
 
-    elif request.method == 'DELETE':
+
+@app.route('/post-delete/<_id>/', methods=['GET'])
+def del_post(_id):
+    if request.method == 'GET':
 
         deleted = delete_post(_id)
 
@@ -99,11 +90,11 @@ def api_posts():
     elif request.method == 'POST':
         content = request.get_json(force=True)
 
-        data = set_post(content)
-        return f'Post saved with "_id" = {data}'
+        result = set_post(content)
+        return f'Post saved with "_id" = {result}'
 
 
-@app.route('/api/posts/<_id>/', methods=['GET'])
+@app.route('/api/posts/<_id>/', methods=['GET', 'POST'])
 # @cache.cached()
 def api_post(_id):
     if request.method == 'GET':
@@ -118,6 +109,14 @@ def api_post(_id):
         content['post_id'] = _id
 
         result = set_comment(content)
+        return result
+
+@app.route('/api/tag/<_id>/', methods=['POST'])
+def api_tag(_id):
+    if request.method == 'POST':
+        content = request.get_json(force=True)
+        content['post_id'] = _id
+        result = set_tag(content)
         return result
 
 

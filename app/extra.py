@@ -6,6 +6,8 @@ from app.config import mongo
 
 from bson.objectid import ObjectId
 
+from slugify import slugify
+
 
 # EXTRA FUNCTIONS______________________________________________________________
 
@@ -90,6 +92,11 @@ def set_post(data={}) -> str:
         else:
             data['short_text'] = data['text']
 
+    if data.get('title'):
+        if len(data['title']) >= 40:
+            data['title'] = data['title'][:37] + "..."
+        data['slug'] = slugify(data['title'])
+
     data['created_date'] = datetime.now().timestamp()
 
     result = mongo.db.posts.insert_one(data)
@@ -112,6 +119,11 @@ def set_post(data={}) -> str:
 
 
 def set_tag(data={}) -> str:
+    if not data.get('user_id'):
+        data['user_id'] = 'Anonymous'
+
+    data['created_date'] = datetime.now().timestamp()
+
     mongo.db.tags.insert_one(data)
 
     return f'Saved tag for post - {data["post_id"]}'
