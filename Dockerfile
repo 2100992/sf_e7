@@ -18,8 +18,8 @@ COPY ./requirements.txt ${HOME}/requirements.txt
 
 RUN pip install -r requirements.txt
 
-COPY apps ${HOME}/apps
-COPY main.py ${HOME}
+COPY app ${HOME}/app
+COPY run.py ${HOME}
 
 ENTRYPOINT [ "gunicorn" ]
 CMD [ "run:app" ]
