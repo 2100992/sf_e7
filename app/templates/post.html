@@ -1,16 +1,37 @@
 {% extends "base.html" %}
 
 {% block navbar %}{% include "navbar.html" %}{% endblock %}
-{% block footer %}{% include "footer.html" %}{% endblock %}
+
 
 {% block content %}
 <div class="container mt-3">
-    <div class="card">
+    <div class="card bg-light mt-3">
+
         <div class="card-header">
-            {{data.post.title}}
+            <div class="row">
+                <div class="col-sm-8">{{data.post.title}}</div>
+                <div class="col-sm-4">
+                    {% for tag in data.tags %}
+                    <span>#{{ tag.tag }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
         </div>
         <div class="card-body">
-            <p class="card-text">{{data.post.text}}</p>
+            <p>
+                <pre class="card-text">{{data.post.text}}</pre>
+            </p>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-sm-4">
+                    <p>{{ data.post.user_id }}</p>
+                </div>
+                <div class="col-sm-6  text-right">
+                    <p>Создано {{ data.post.created_date|strftime }}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -18,11 +39,20 @@
 <div class="container mt-3">
     <div class="row">
         {% for comment in data.comments %}
-        <div class="col-sm-6">
+        <div class="col-sm-6 mt-3">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ comment.title }}</h5>
-                    <p class="card-text">{{ comment.text }}</p>
+                    <p><pre class="card-text">{{ comment.text }}</pre></p>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            {{ comment.created_date|strftime }}
+                        </div>
+                        <div class="col-sm-4 ml-auto">
+                            {{ comment.user_id }}
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -32,3 +62,7 @@
 
 
 {% endblock %}
+
+{% block footer %}{% include "add_comment_footer.html" %}{% endblock %}
+
+{% block modal %}{% include "add_comment_modal.html" %}{% endblock %}

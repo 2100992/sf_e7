@@ -1,42 +1,19 @@
 {% extends "base.html" %}
 
 {% block navbar %}{% include "navbar.html" %}{% endblock %}
-{% block footer %}{% include "footer.html" %}{% endblock %}
+
 
 {% block content %}
-<h1>Привет!</h1>
-
-<!-- <form class="navbar-form navbar left">
-    <div class="form-group">
-        <label for="exampleInputTitle">Title</label>
-        <input type="text" class="form-control" id="exampleInputTitle" aria-describedby="emailHelp" placeholder="Title"
-            name="q" value="{{ request.args.get('q', '') }}">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Text</label>
-        <input type="text" class="form-control" id="exampleInputPassword1">
-    </div>
-    <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form> -->
-
-
-
-<!-- <form method="POST">
-    <div class="form-group">
-        <label for="exampleInputTitle">Title</label>
-        <input type="text" class="form-control" id="exampleInputTitle" placeholder="Title"
-            name="q" value="{{ request.args.get('q', '') }}">
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlTextarea">Ttext</label>
-        <textarea class="form-control" id="exampleFormControlTextarea" rows="4"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form> -->
-
+<div class="container">
+    <h1>Привет!</h1>
+    <p>Это домашнее задание SkillFactory</p>
+    <p>Доска обьявлений с комментариями и тегами</p>
+</div>
 
 {% endblock %}
+
+
+
+{% block footer %}{% include "add_post_footer.html" %}{% endblock %}
+
+{% block modal %}{% include "add_post_modal.html" %}{% endblock %}

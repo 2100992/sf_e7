@@ -24,4 +24,9 @@ DATA_BASE = 'callboard'
 app.config["MONGO_URI"] = f"mongodb://{MONGO_HOST}:{MONGO_PORT}/{DATA_BASE}"
 # app.config['MONGO_DBNAME'] = 'dashboard' 
 mongo = PyMongo(app)
-cache = Cache(app, config={'CACHE_TYPE': 'redis', 'CACHE_REDIS_URL': 'redis://{redis_host}:6379/0'.format(redis_host=REDIS_HOST)})
+cache = Cache(app, config={
+    'CACHE_TYPE': 'redis',
+    'CACHE_REDIS_URL': f'redis://{REDIS_HOST}:6379/0',
+    "CACHE_DEFAULT_TIMEOUT": 300,
+    "CACHE_IGNORE_ERRORS": True,
+    })

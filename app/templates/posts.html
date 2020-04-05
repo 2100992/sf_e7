@@ -1,26 +1,41 @@
 {% extends "base.html" %}
 
 {% block navbar %}{% include "navbar.html" %}{% endblock %}
-{% block footer %}{% include "footer.html" %}{% endblock %}
 
 {% block content %}
 
 
 <div class="container mt-3">
-
     <div class="row">
         {% for post in data.posts %}
         <div class="col-sm-6">
-            <div class="card">
+            <div class="card bg-light mt-3">
 
                 <div class="card-header">
-                    {{post.title}} (тегов = {{ post.statistics.tags }}, комментариев = {{ post.statistics.comments }})
+                    <div class="row">
+                        <div class="col-sm-8">
+                            {{post.title}}
+                        </div>
+                        <div class="col-sm-4 text-right">
+                            {% for tag in post.tags %}
+                            <span>#{{ tag.tag }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <!-- <h5 class="card-title">{{post.title}}</h5> -->
-                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
-                    <p class="card-text">{{post.short_text}}.</p>
-                    <a href="/posts/{{post._id}}/" class="card-link">Подробнее</a>
+                    <p class="card-text">{{post.short_text}}</p>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>{{ post.statistics.comments }} комментариев</p>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <a href="/posts/{{post._id}}/" class="card-link">Подробнее</a>
+                        </div>
+                    </div>
+                    
                 </div>
 
             </div>
@@ -29,5 +44,9 @@
     </div>
 </div>
 
-
 {% endblock %}
+
+
+{% block footer %}{% include "add_post_footer.html" %}{% endblock %}
+
+{% block modal %}{% include "add_post_modal.html" %}{% endblock %}
