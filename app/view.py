@@ -14,7 +14,7 @@ def index():
 
 
 @app.route('/posts/', methods=['GET', 'POST'])
-# @cache.cached()
+# @cache.cached(timeout=10)
 def posts():
 
     if request.method == 'GET':
@@ -37,7 +37,7 @@ def posts():
 
 
 @app.route('/posts/<_id>/', methods=['GET', 'POST'])
-# @cache.cached()
+# @cache.cached(timeout=10)
 def post(_id):
 
     print(f'request.method = {request.method}')
@@ -62,8 +62,6 @@ def post(_id):
 
         data = get_post(_id)
 
-        # return render_template('post.html', data=data)
-        # return redirect(url_for('post'), _id)
         return redirect(f".")
 
 
@@ -79,7 +77,7 @@ def del_post(_id):
 
 
 @app.route('/api/posts/', methods=['GET', 'POST'])
-# @cache.cached()
+# @cache.cached(timeout=10)
 def api_posts():
     if request.method == 'GET':
         req = dict(request.args)
@@ -96,7 +94,7 @@ def api_posts():
 
 
 @app.route('/api/posts/<_id>/', methods=['GET', 'POST'])
-# @cache.cached()
+# @cache.cached(timeout=10)
 def api_post(_id):
     if request.method == 'GET':
 
@@ -122,7 +120,7 @@ def api_tag(_id):
 
 
 @app.route('/api/statistics/<_id>/', methods=['GET'])
-# @cache.cached()
+# @cache.cached(timeout=10)
 def api_statistics(_id):
 
     data = get_post_statistics(_id)
