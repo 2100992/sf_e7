@@ -2,7 +2,7 @@ from app import app
 
 import json
 
-from flask import request, render_template, redirect
+from flask import request, render_template, redirect, url_for
 
 from app.extra import *
 
@@ -33,7 +33,7 @@ def posts():
         print(post_id)
 
         data = get_posts()
-        return render_template('posts.html', data=data)
+        return redirect(url_for('posts'))
 
 
 @app.route('/posts/<_id>/', methods=['GET', 'POST'])
@@ -63,7 +63,8 @@ def post(_id):
         data = get_post(_id)
 
         # return render_template('post.html', data=data)
-        return redirect(f'/posts/{_id}/')
+        # return redirect(url_for('post'), _id)
+        return redirect(f".")
 
 
 @app.route('/post-delete/<_id>/', methods=['GET'])
